@@ -15,6 +15,11 @@ class Map:
         self.map = np.zeros(shape=(self.size_x, self.size_y), dtype='int16')
 
     def add_horizontal_line(self, coordinates):
+        """
+        Mainly part one function which draws horizontal lines
+        :param coordinates: list of 4 coordinates to draw a line
+        :return:
+        """
         x1, y1, x2, y2 = coordinates
 
         delta_x = abs(x1 - x2)
@@ -31,6 +36,12 @@ class Map:
                 self.map[min_y + i, x1] += 1
 
     def add_line(self, coordinates):
+        """
+        General function, mainly for part two. It draws diagonal line if necessary. Otherwise calls horizontal
+        line function.
+        :param coordinates: list of 4 coordinates to draw a line
+        :return:
+        """
         x1, y1, x2, y2 = coordinates
 
         delta_x = x2 - x1
@@ -55,14 +66,26 @@ class Map:
             self.add_horizontal_line(coordinates)
 
     def draw_full_horizontal_map(self):
+        """
+        Draw part one map, using only horizontal lines
+        :return:
+        """
         for coordinates in self.data:
             self.add_horizontal_line(coordinates)
 
     def draw_full_map(self):
+        """
+        Draw part two map, using generalized line function
+        :return:
+        """
         for coordinates in self.data:
             self.add_line(coordinates)
 
     def get_score(self):
+        """
+        Calculate score of the map
+        :return: Number of fields with value of 2 or higher
+        """
         return np.where(self.map >= 2)[0].shape[0]
 
 
@@ -79,6 +102,6 @@ def part_one(puzzle):
 # --------------------------------------------- PART TWO ---------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
 def part_two(puzzle):
-    x = Map(data)
+    x = Map(puzzle)
     x.draw_full_map()
     print(x.get_score())
