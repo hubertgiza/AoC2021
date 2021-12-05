@@ -19,6 +19,11 @@ class BingoPartOne:
                str(self.columns_scores)
 
     def check_winner(self, i):
+        """
+        Check if i-th board is the winner.
+        :param i: boards number
+        :return: True if it is the winner. False otherwise
+        """
         results_rows = np.where(self.rows_scores[i] == self.board_size)
         results_columns = np.where(self.columns_scores[i] == self.board_size)
         if len(results_rows[0]) != 0:
@@ -32,14 +37,14 @@ class BingoPartOne:
 
         :param i: number of the board
         :param x: called number
-        :return:
+        :return: score of the board according to the rules of the puzzle
         """
         sum_of_uncalled_numbers = np.sum(np.where(self.chosen_numbers[i] == 0, self.boards[i], 0))
         return sum_of_uncalled_numbers * x
 
     def add_number_to_board(self, x, board_number):
         """
-
+        Add number x to the given board and mark it in the chosen_numbers array
         :param x: number to add
         :param board_number: number of board
         :return:
@@ -53,6 +58,12 @@ class BingoPartOne:
                         self.columns_scores[(board_number, j)] += 1
 
     def add_number_to_all_boards(self, x):
+        """
+        Add number x to all of the boards. If the i-th board is the winner, then immediately calculate it score and
+        break the loop
+        :param x: the number to add
+        :return: True if the winner is found. False otherwise
+        """
         for i in range(len(self.boards)):
             self.add_number_to_board(x, i)
             if self.check_winner(i):
@@ -79,6 +90,11 @@ class BingoPartTwo:
                str(self.winners)
 
     def check_winner(self, i):
+        """
+        Check if i-th board is the winner.
+        :param i: boards number
+        :return: True if it is the winner. False otherwise
+        """
         results_rows = np.where(self.rows_scores[i] == self.board_size)
         results_columns = np.where(self.columns_scores[i] == self.board_size)
         if len(results_rows[0]) != 0:
@@ -89,17 +105,17 @@ class BingoPartTwo:
 
     def calculate_board_score(self, i, x):
         """
-
+        Calculate score of board x
         :param i: number of the board
         :param x: called number
-        :return:
+        :return: score of the board according to the rules of the puzzle
         """
         sum_of_uncalled_numbers = np.sum(np.where(self.chosen_numbers[i] == 0, self.boards[i], 0))
         return sum_of_uncalled_numbers * x
 
     def add_number_to_board(self, x, board_number):
         """
-
+        Add number x to the given board and mark it in the chosen_numbers array
         :param x: number to add
         :param board_number: number of board
         :return:
@@ -113,6 +129,11 @@ class BingoPartTwo:
                         self.columns_scores[(board_number, j)] += 1
 
     def add_number_to_all_boards(self, x):
+        """
+        Add number x to all of the boards. Return True if last winner is found and calculate its score
+        :param x: number to add
+        :return: True if the last winner is found. False otherwise
+        """
         for i in range(len(self.boards)):
             self.add_number_to_board(x, i)
             if self.check_winner(i):
