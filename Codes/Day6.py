@@ -9,7 +9,7 @@ data = list(map(int, data[0].split(',')))
 fish = [0] * 9
 for i in range(len(data)):
     fish[data[i]] += 1
-print(fish)
+
 days = 256
 for i in range(days):
     fish_to_add = fish[0]
