@@ -2,6 +2,10 @@ PATH = "/home/hubert/PycharmProjects/AdventOfCode2021"
 PATH_TO_CODES = PATH + "/Codes"
 PATH_TO_INPUTS = PATH + "/Inputs"
 
+PATH_2 = "/Users/hubertgiza/PycharmProjects/Aoc2021"
+PATH_TO_CODES_2 = PATH_2 + "/Codes"
+PATH_TO_INPUTS_2 = PATH_2 + "/Inputs"
+
 
 class Day4Parser:
     def __init__(self, file):
