@@ -55,7 +55,7 @@ def part_1():
         print(res)
 
 
-if __name__ == '__main__':
+def part_2():
     x_mas_patterns = ["MSAMS", "SSAMM", "MMASS", "SMASM"]
     with open(INPUT_PATH, "r") as f:
         res = 0
@@ -66,3 +66,8 @@ if __name__ == '__main__':
                 if X in x_mas_patterns:
                     res += 1
         print(res)
+
+
+if __name__ == '__main__':
+    part_1()
+    part_2()
